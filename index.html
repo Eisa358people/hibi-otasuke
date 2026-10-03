@@ -424,7 +424,7 @@ img{
     <div class="style-switch-title">🎨 表示スタイル</div>
     <div class="style-switch-desc">最初の雰囲気を選べます。あとからいつでも変更できます。</div>
     <div class="style-switch-grid">
-      <button type="button" class="style-choice" id="styleGeneral" onclick="setAppStyle('general')">🌿 一般向け<br><span>暮らし・仕事・趣味・旅行など</span></button>
+      <button type="button" class="style-choice" id="styleGeneral" onclick="setAppStyle('general')">🌿 一般の方向け<br><span>暮らし・仕事・趣味・旅行など</span></button>
       <button type="button" class="style-choice" id="styleMichi" onclick="setAppStyle('michi')">🙏 お道の方向け<br><span>おたすけ・おつとめなど</span></button>
     </div>
   </div>
@@ -482,7 +482,7 @@ function setAppStyle(style){
   localStorage.setItem("nichinichi_app_style",style);
   if(style==="general"&&!localStorage.getItem("otasuke_visibility_general")){const v={}; items.forEach(x=>v[x[0]]=false); localStorage.setItem("otasuke_visibility_general",JSON.stringify(v));}
   if(style==="michi"&&!localStorage.getItem("otasuke_visibility_michi")){const v={}; items.forEach(x=>v[x[0]]=true); localStorage.setItem("otasuke_visibility_michi",JSON.stringify(v));}
-  applyAppStyle(); applyStyleSpecificText(); renderCategoryOptions(""); renderItems(); showToast(style==="general"?"一般向けに切り替えました":"お道の方向けに切り替えました");
+  applyAppStyle(); applyStyleSpecificText(); renderCategoryOptions(""); renderItems(); showToast(style==="general"?"一般の方向けに切り替えました":"お道の方向けに切り替えました");
 }
 function applyAppStyle(){
   const style=getAppStyle(), hero=document.querySelector('.hero'), img=document.getElementById('heroImage'), title=document.getElementById('heroTitle'), sub=document.getElementById('heroSub'); if(!hero||!img)return;
