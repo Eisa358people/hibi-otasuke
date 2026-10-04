@@ -253,15 +253,6 @@ button{
   .modal-desc{font-size:14px !important;}
   .small-btn{font-size:16px !important;}
 }
-
-.general-free-note{font-size:13px;color:#66879a;line-height:1.7;margin:-3px 0 12px}.general-entry{padding:12px;margin:0 0 10px;border:1px solid #d6edf6;border-radius:14px;background:#fbfeff}.general-entry-head{display:flex;gap:7px;align-items:center}.general-entry-title{flex:1;min-width:0}.general-entry-text{width:100%;margin-top:8px;min-height:82px;resize:vertical;padding:11px;border:1px solid #c7e6f3;border-radius:11px;background:#fff;color:#244d68;font-size:15px;line-height:1.7;font-family:inherit;box-sizing:border-box;outline:none}.general-entry-text:focus,.general-entry-title:focus{border-color:#72b9d8;box-shadow:0 0 0 3px rgba(20,143,208,.10)}.delete-entry-btn{width:42px!important;margin:0!important;padding:8px!important;font-size:14px!important;border-radius:10px!important;background:#fff2f2!important;color:#b94a4a!important;box-shadow:none!important;border:1px solid #f0cccc!important}.general-book-entries .record-extra{margin-top:8px}
-
-/* 改良版：振り返りボタン・時間加算 */
-.top-nav .nav-btn.secondary{background:linear-gradient(180deg,#fffbe0,#fff4b8)!important;color:#806c24!important;border:1px solid #eadb8b!important;box-shadow:0 4px 12px rgba(190,160,50,.14)!important}
-.duration-tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.duration-tools button{width:auto!important;min-width:0!important;margin:0!important;padding:9px 11px!important;font-size:15px!important;background:#edf9ff!important;color:#176d9e!important;border:1px solid #c7e7f5!important;box-shadow:none!important}
-.time-result{margin-top:7px;font-size:14px;color:#176d9e;font-weight:700}
-body{font-size:16px!important}
-@media(max-width:700px){body{font-size:110%!important}}
 </style>
 
 <style>
@@ -325,57 +316,6 @@ img{
   image-rendering:auto;
 }
 </style>
-
-<style>
-.jinmyo-time-tools{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;}
-.jinmyo-time-tools button{min-height:44px;flex:0 0 auto;}
-</style>
-
-<style>
-/* 神名流しの時間ボタン：開始時間の直下に配置 */
-.jinmyo-time-tools{
-  margin-top:3px !important;
-  display:grid !important;
-  grid-template-columns:repeat(5,1fr) !important;
-  gap:6px !important;
-  margin-top:8px !important;
-}
-.jinmyo-time-tools .jinmyo-time-btn-v12{
-  margin:0 !important;
-  min-height:46px !important;
-  padding:9px 4px !important;
-  font-size:14px !important;
-  white-space:nowrap !important;
-  border-radius:10px !important;
-}
-#jinmyoTimeResult{
-  margin-top:8px;
-  text-align:center;
-  color:#176d9e;
-  font-size:14px;
-  font-weight:700;
-}
-@media(max-width:430px){
-  .jinmyo-time-tools{grid-template-columns:repeat(5,1fr)!important;gap:4px!important}
-  .jinmyo-time-tools .jinmyo-time-btn-v12{font-size:12px!important;padding:8px 2px!important}
-}
-</style>
-
-<style>
-.jinmyo-reset-btn-v15{
-  margin-top:8px!important;
-  width:auto!important;
-  display:block!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  padding:9px 18px!important;
-  font-size:14px!important;
-  background:#f4f9fb!important;
-  color:#4d7386!important;
-  border:1px solid #cfe4ec!important;
-  box-shadow:none!important;
-}
-</style>
 </head>
 <body>
 <main>
@@ -411,42 +351,31 @@ img{
 <div class="note">おさづけの回数を入力すると、その回数分だけ名前欄が表示されます。</div>
 </div>
 
-<div id="generalFreeCard" class="card general-free-card" style="display:none">
-  <div class="card-title">🌱 今日の歩み</div>
-  <div class="general-free-note">その日の出来事や、やってみたこと、感じたことなどを、自分で自由に記録できます。</div>
-  <div id="generalEntries"></div>
-  <button type="button" class="small-btn secondary-btn" onclick="addGeneralEntry()">＋ 記録を追加</button>
-</div>
-
-<div id="michiOtherDutyCard" class="card other-duty-card">
+<div class="card other-duty-card">
   <div class="card-title">🌱 今日の歩み</div>
   <label for="otherDutyName">カテゴリー</label>
   <select id="otherDutyName">
     <option value="">選ぶ</option>
-    <option value="農業">農業</option>
-    <option value="仕事">仕事</option>
-    <option value="遊び・趣味">遊び・趣味</option>
-    <option value="旅行・お出かけ">旅行・お出かけ</option>
-    <option value="家族・人とのこと">家族・人とのこと</option>
-    <option value="その他">その他（自由入力）</option>
+    <option value="月次祭参拝">月次祭参拝</option>
+    <option value="教区・支部関係">教区・支部関係</option>
   </select>
-  <button type="button" class="small-btn secondary-btn" style="margin-top:10px" onclick="addCustomCategory()">＋ 自分でカテゴリーを追加</button>
-  <div id="otherDutyCustomWrap" style="margin-top:10px;display:none">
-    <label for="otherDutyCustom">カテゴリー・行事名（入力）</label>
-    <input id="otherDutyCustom" type="text" placeholder="例：ひのきしん、子弟練成会など">
-  </div>
   <div style="margin-top:10px">
     <label id="otherDutyPlaceLabel" for="otherDutyPlace">場所・教会名</label>
     <input id="otherDutyPlace" type="text" placeholder="例：○○教会、天理教本部など">
   </div>
-  <div class="jinmyo-grid" style="margin-top:10px">
-    <div><label for="otherDutyStart">開始時刻</label><input id="otherDutyStart" type="time"></div>
-    <div><label for="otherDutyEnd">終了時刻</label><input id="otherDutyEnd" type="time" readonly></div>
+  <div style="margin-top:10px">
+    <label for="otherDutyStart">開始時刻</label>
+    <input id="otherDutyStart" type="time">
   </div>
-  <div class="duration-tools"><button type="button" onclick="addOtherDutyMinutes(5)">＋5分</button><button type="button" onclick="addOtherDutyMinutes(10)">＋10分</button><button type="button" onclick="addOtherDutyMinutes(30)">＋30分</button><button type="button" onclick="addOtherDutyMinutes(60)">＋1時間</button><button type="button" onclick="addOtherDutyMinutes(1)">＋1分</button></div>
-  <div id="otherDutyTimeResult" class="time-result">開始時間を入れて、かかった時間を選べます</div>
+  <div class="jinmyo-time-buttons" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px">
+    <button type="button" class="other-duty-time-btn" data-minutes="60" style="flex:1;min-width:72px">＋1時間</button>
+    <button type="button" class="other-duty-time-btn" data-minutes="30" style="flex:1;min-width:72px">＋30分</button>
+    <button type="button" class="other-duty-time-btn" data-minutes="10" style="flex:1;min-width:72px">＋10分</button>
+    <button type="button" class="other-duty-time-btn" data-minutes="5" style="flex:1;min-width:72px">＋5分</button>
+    <button type="button" class="other-duty-time-btn" data-minutes="1" style="flex:1;min-width:72px">＋1分</button>
   </div>
-  <div id="otherDutyDuration" class="duration">実動時間：未入力</div>
+  <button type="button" id="otherDutyTimeReset" class="secondary-btn" style="margin-top:8px">↺ 時間をリセット</button>
+  <div id="otherDutyDuration" class="duration">活動時間：0分</div>
 </div>
 
 <div class="card diary-card">
@@ -469,9 +398,10 @@ img{
   </div>
   <div class="card">
     <div class="card-title">📅 ひと月の歩み</div>
+    <label>月を選ぶ</label>
     <label class="month-picker-button" for="bookMonth">
       📅 <span id="bookMonthLabel">2026年10月</span>
-      <input id="bookMonth" type="month" aria-label="表示する月を変更">
+      <input id="bookMonth" type="month">
     </label>
     <div id="monthSummary" class="month-summary"></div>
   </div>
@@ -544,8 +474,7 @@ function applyStyleSpecificText(){
   const diary=document.getElementById("diary");
   if(diary) diary.placeholder=style==="michi"?"今日のおたすけで感じたこと、訪問先の様子、気づいたことなどを自由に記録できます。":"今日あったこと、感じたこと、気づいたことなどを自由に記録できます。";
   const sub=document.querySelector(".book-sub");
-  if(sub) sub.textContent=style==="michi"?"今日も一歩、おたすけの歩みを。":"今日も一歩、自分らしい歩みを。";
-  applyGeneralInputMode();
+  if(sub) sub.textContent=style==="michi"?"今日も一歩、おたすけの歩みを。":"今日も一歩、自分の人生を歩もう。";
 }
 
 function setAppStyle(style){
@@ -557,7 +486,7 @@ function setAppStyle(style){
 function applyAppStyle(){
   const style=getAppStyle(), hero=document.querySelector('.hero'), img=document.getElementById('heroImage'), title=document.getElementById('heroTitle'), sub=document.getElementById('heroSub'); if(!hero||!img)return;
   document.body.classList.toggle('general-mode',style==='general'); hero.classList.toggle('general-mode',style==='general'); hero.classList.toggle('michi-mode',style==='michi');
-  if(style==='general'){img.src=GENERAL_HERO;title.textContent='🌿 日々の歩み';sub.textContent='今日も一歩、自分らしい歩みを。';}
+  if(style==='general'){img.src=GENERAL_HERO;title.textContent='🌿 日々の歩み';sub.textContent='今日も一歩、自分の人生を歩もう。';}
   else{img.src=MICHII_HERO;title.textContent='🌱 日々の歩み';sub.textContent='今日も一歩、おたすけの歩みを。';}
   document.getElementById('styleGeneral')?.classList.toggle('active',style==='general'); document.getElementById('styleMichi')?.classList.toggle('active',style==='michi');
 }
@@ -565,7 +494,7 @@ const MICHII_HERO=document.getElementById('heroImage').src;
 const items=[
   ["jinmyo","神名流し","回"],["leaflet","リーフレット配り","枚"],
   ["visit","戸別訪問","軒"],["otsutome","おつとめ","回"],
-  ["junin","十二下り（てをどり）","回"],["osazuke","おさづけの取次ぎ","回"]
+  ["junin","十二下り（ておどり）","回"],["osazuke","おさづけの取次ぎ","回"]
 ];
 const defaultVisibility=Object.fromEntries(items.map(x=>[x[0],true]));
 const box=document.getElementById("items");
@@ -574,21 +503,9 @@ function getVisibility(){
   try{
     const style=getAppStyle();
     const key=style==="general"?"otasuke_visibility_general":"otasuke_visibility_michi";
-    const saved=localStorage.getItem(key);
-    // 初回起動は一般の方向けなので、お道専用6項目を非表示にする
-    if(!saved && style==="general"){
-      const v={};
-      items.forEach(x=>v[x[0]]=false);
-      return v;
-    }
-    const raw=saved||localStorage.getItem("otasuke_visibility")||"{}";
+    const raw=localStorage.getItem(key)||localStorage.getItem("otasuke_visibility")||"{}";
     return {...defaultVisibility,...JSON.parse(raw)};
-  }catch(e){
-    if(getAppStyle()==="general"){
-      const v={}; items.forEach(x=>v[x[0]]=false); return v;
-    }
-    return {...defaultVisibility};
-  }
+  }catch(e){return {...defaultVisibility};}
 }
 function renderItems(){
   const visibility=getVisibility(); box.innerHTML="";
@@ -600,27 +517,29 @@ function renderItems(){
         <div class="row"><input id="${id}" type="number" min="0" step="1" value="0" inputmode="numeric"><div class="total">累計 <span id="${id}Total">0</span> ${unit}</div></div>
         <div class="jinmyo-detail">
           <div style="margin-top:0"><label for="jinmyoPlace">場所</label><input id="jinmyoPlace" type="text" placeholder="例：○○町、駅前など"></div>
-          <div style="margin-top:10px"><label for="jinmyoStart">開始時刻</label><input id="jinmyoStart" type="time"><div class="duration-tools jinmyo-time-tools"><button type="button" class="jinmyo-time-btn-v12" data-minutes="5">＋5分</button><button type="button" class="jinmyo-time-btn-v12" data-minutes="10">＋10分</button><button type="button" class="jinmyo-time-btn-v12" data-minutes="30">＋30分</button><button type="button" class="jinmyo-time-btn-v12" data-minutes="60">＋1時間</button><button type="button" class="jinmyo-time-btn-v12" data-minutes="1">＋1分</button></div><button type="button" class="jinmyo-reset-btn-v15" id="jinmyoResetBtn">🔄 リセット</button></div>
-          <input id="jinmyoEnd" type="hidden">
-          <div id="jinmyoTimeResult" class="time-result">開始時間を入れて、かかった時間を選べます</div>
-          <div id="jinmyoDuration" class="duration">活動時間：未入力</div>
+          <div style="margin-top:10px">
+            <label for="jinmyoStart">開始時刻</label>
+            <input id="jinmyoStart" type="time">
+          </div>
+          <div class="jinmyo-time-buttons" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px">
+            <button type="button" class="jinmyo-time-btn-v12" data-minutes="60" style="flex:1;min-width:72px">＋1時間</button>
+            <button type="button" class="jinmyo-time-btn-v12" data-minutes="30" style="flex:1;min-width:72px">＋30分</button>
+            <button type="button" class="jinmyo-time-btn-v12" data-minutes="10" style="flex:1;min-width:72px">＋10分</button>
+            <button type="button" class="jinmyo-time-btn-v12" data-minutes="5" style="flex:1;min-width:72px">＋5分</button>
+            <button type="button" class="jinmyo-time-btn-v12" data-minutes="1" style="flex:1;min-width:72px">＋1分</button>
+          </div>
+          <button type="button" id="jinmyoTimeReset" class="secondary-btn" style="margin-top:8px">↺ 時間をリセット</button>
+          <div id="jinmyoDuration" class="duration">活動時間：0分</div>
         </div></div>`);
     } else {
       const placeHtml=id==="leaflet"?`<div style="margin-top:10px"><label for="leafletPlace">場所</label><input id="leafletPlace" type="text" placeholder="例：○○町、○○地区"></div>`:id==="visit"?`<div style="margin-top:10px"><label for="visitPlace">場所</label><input id="visitPlace" type="text" placeholder="例：○○町、○○地区"></div>`:"";
       box.insertAdjacentHTML("beforeend",`<div class="card activity-card" data-item="${id}"><label>${name}（${unit}）</label><div class="row"><input id="${id}" type="number" min="0" step="1" value="0" inputmode="numeric"><div class="total">累計 <span id="${id}Total">0</span> ${unit}</div></div>${placeHtml}</div>`);
     }
   });
-  document.querySelectorAll(".jinmyo-time-btn").forEach(btn=>{
-    btn.addEventListener("click",()=>addJinmyoMinutes(Number(btn.dataset.minutes)));
-  });
   attachActivityEvents(); load();
 }
 
 applyAppStyle(); applyStyleSpecificText();
-if(getAppStyle()==="general" && !localStorage.getItem("otasuke_visibility_general")){
-  const v={}; items.forEach(x=>v[x[0]]=false);
-  localStorage.setItem("otasuke_visibility_general",JSON.stringify(v));
-}
 
 const d=new Date(),pad=n=>String(n).padStart(2,"0");
 const date=document.getElementById("date");
@@ -636,83 +555,64 @@ function syncPeople(){
   for(let i=0;i<n;i++){const row=document.createElement("div");row.className="name-row";const no=document.createElement("span");no.className="name-no";no.textContent=i+1;const input=document.createElement("input");input.type="text";input.placeholder=`取り次いだ方 ${i+1}`;input.value=current[i]||"";row.append(no,input);p.append(row);}
 }
 function formatMinutes(mins){mins=Number(mins)||0;const h=Math.floor(mins/60),m=mins%60;if(!h&&!m)return "0分";return (h?`${h}時間`:"")+(m?`${m}分`:"")}
-function durationFor(startId,endId,outId,label){const s=document.getElementById(startId)?.value,e=document.getElementById(endId)?.value,o=document.getElementById(outId);if(!o)return 0;if(!s||!e){o.textContent=label+"：未入力";return 0;}let [sh,sm]=s.split(":").map(Number),[eh,em]=e.split(":").map(Number),mins=(eh*60+em)-(sh*60+sm);if(mins<0)mins+=1440;o.textContent=label+"："+formatMinutes(mins);return mins}
-function renderGeneralEntries(entries=[]){
-  const wrap=document.getElementById("generalEntries"); if(!wrap)return;
-  wrap.innerHTML="";
-  entries.forEach((entry,i)=>{
-    const row=document.createElement("div"); row.className="general-entry";
-    row.innerHTML=`<div class="general-entry-head"><input class="general-entry-title" type="text" placeholder="記録の名前（例：畑仕事、仕事、家族との時間）" value="${escapeHtml(entry.title||"")}"><button type="button" class="delete-entry-btn" onclick="removeGeneralEntry(${i})">🗑</button></div><textarea class="general-entry-text" rows="3" placeholder="内容を自由に書いてください">${escapeHtml(entry.text||"")}</textarea><div style="margin-top:9px"><label>開始時間</label><input type="time" class="g-start" value="${escapeHtml(entry.start||"")}"></div><div class="duration-tools general-time-tools"><button type="button" class="general-time-btn" data-minutes="5">＋5分</button><button type="button" class="general-time-btn" data-minutes="10">＋10分</button><button type="button" class="general-time-btn" data-minutes="30">＋30分</button><button type="button" class="general-time-btn" data-minutes="60">＋1時間</button><button type="button" class="general-time-btn" data-minutes="1">＋1分</button></div><div class="time-result">${entry.end ? `終了時間：${escapeHtml(entry.end)}` : "開始時間を入れて、かかった時間を選べます"}</div>`;
-    wrap.appendChild(row);
-  });
-}
-function getGeneralEntriesFromUI(){
-  return [...document.querySelectorAll("#generalEntries .general-entry")].map(row=>({title:row.querySelector(".general-entry-title")?.value.trim()||"",text:row.querySelector(".general-entry-text")?.value.trim()||"",start:row.querySelector(".g-start")?.value||"",end:row.querySelector(".g-end")?.value||""})).filter(x=>x.title||x.text||x.start||x.end);
-}
-function addEntryMinutes(btn,minutes){const row=btn.closest(".general-entry"),start=row?.querySelector(".g-start"),end=row?.querySelector(".g-end"),info=row?.querySelector(".time-result");if(!start?.value){alert("まず開始時間を入力してください");start?.focus();return;}const [h,m]=start.value.split(":").map(Number);const d=new Date(2000,0,1,h,m);d.setMinutes(d.getMinutes()+minutes);const v=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");end.value=v;if(info)info.textContent="終了時間："+v;save();}
-function addGeneralEntry(){
-  const entries=getGeneralEntriesFromUI(); entries.push({title:"",text:""}); renderGeneralEntries(entries);
-  const titles=document.querySelectorAll("#generalEntries .general-entry-title"); if(titles.length)titles[titles.length-1].focus();
-}
-function removeGeneralEntry(index){
-  const entries=getGeneralEntriesFromUI(); entries.splice(index,1); renderGeneralEntries(entries);
-}
-function applyGeneralInputMode(){
-  const general=getAppStyle()==="general";
-  const free=document.getElementById("generalFreeCard"), michi=document.getElementById("michiOtherDutyCard");
-  if(free)free.style.display=general?"block":"none";
-  if(michi)michi.style.display=general?"none":"block";
-}
-function calcDuration(){return durationFor("jinmyoStart","jinmyoEnd","jinmyoDuration","活動時間")}
-function addJinmyoMinutes(minutes){const start=document.getElementById("jinmyoStart"),end=document.getElementById("jinmyoEnd"),info=document.getElementById("jinmyoTimeResult"),dur=document.getElementById("jinmyoDuration");if(!start||!start.value){if(info)info.textContent="先に開始時間を入力してください";if(start)start.focus();return;}const [h,m]=start.value.split(":").map(Number);let total=0;if(end&&end.value){const [eh,em]=end.value.split(":").map(Number);total=(eh*60+em)-(h*60+m);if(total<0)total+=1440;}total=Math.min(total+(Number(minutes)||0),1439);const d=new Date(2000,0,1,h,m);d.setMinutes(d.getMinutes()+total);const v=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");if(end)end.value=v;if(info)info.textContent="＋"+formatMinutes(total)+"　（終了目安："+v+"）";if(dur)dur.textContent="活動時間："+formatMinutes(total);}
-function calcOtherDutyDuration(){return durationFor("otherDutyStart","otherDutyEnd","otherDutyDuration","実動時間")}function addOtherDutyMinutes(minutes){const start=document.getElementById("otherDutyStart"),end=document.getElementById("otherDutyEnd"),info=document.getElementById("otherDutyTimeResult");if(!start.value){alert("まず開始時間を入力してください");start.focus();return;}const [h,m]=start.value.split(":").map(Number);const d=new Date(2000,0,1,h,m);d.setMinutes(d.getMinutes()+minutes);end.value=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");if(info)info.textContent="終了時間："+end.value;calcOtherDutyDuration();save();}
-
-const defaultCategories=["月次祭参拝","教区・支部関係","農業","仕事","遊び・趣味","旅行・お出かけ","おつとめ練習","家族・人とのこと"];
+let jinmyoMinutes=0;
+function renderJinmyoDuration(){const o=document.getElementById("jinmyoDuration");if(o)o.textContent="活動時間："+formatMinutes(jinmyoMinutes)}
+function calcDuration(){renderJinmyoDuration();return jinmyoMinutes}
+let otherDutyMinutes=0;
+function calcOtherDutyDuration(){const o=document.getElementById("otherDutyDuration");if(o)o.textContent="活動時間："+formatMinutes(otherDutyMinutes);return otherDutyMinutes}
+const defaultCategories=["月次祭参拝","教区・支部関係"];
 function getCustomCategories(){try{return JSON.parse(localStorage.getItem("otasuke_custom_categories")||"[]").filter(Boolean)}catch(e){return []}}
 function setCustomCategories(list){localStorage.setItem("otasuke_custom_categories",JSON.stringify([...new Set(list.filter(Boolean))]));}
 function getCategoryOrder(){try{const saved=JSON.parse(localStorage.getItem("otasuke_category_order")||"[]");const all=[...getDefaultVisibleCategories(),...getCustomCategories()];return [...saved.filter(x=>all.includes(x)),...all.filter(x=>!saved.includes(x))]}catch(e){return [...getDefaultVisibleCategories(),...getCustomCategories()]}}
 function setCategoryOrder(list){localStorage.setItem("otasuke_category_order",JSON.stringify(list))}
-function getDefaultVisibleCategories(){return ["月次祭参拝","教区・支部関係"]}
-function renderCategoryOptions(selected=""){const sel=document.getElementById("otherDutyName");if(!sel)return;const base=getDefaultVisibleCategories();const ordered=getCategoryOrder().filter(x=>base.includes(x)||getCustomCategories().includes(x));const options=["<option value=\"\">選ぶ</option>",...ordered.map(x=>`<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`),...getCustomCategories().filter(x=>!ordered.includes(x)).map(x=>`<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>` )];sel.innerHTML=options.join("");sel.value=selected||"";syncOtherDutyName()}
-function addCustomCategory(){const name=prompt("追加するカテゴリー名を入力してください");if(!name)return;const value=name.trim();if(!value||value==="その他"||defaultCategories.includes(value))return;const list=getCustomCategories();if(!list.includes(value)){list.push(value);setCustomCategories(list);setCategoryOrder([...getCategoryOrder(),value]);}renderCategoryOptions(value);renderCategoryManager();showToast("カテゴリーを追加しました！")}
+function getDefaultVisibleCategories(){return getAppStyle()==="general"?[]:["月次祭参拝","教区・支部関係"]}
+function renderCategoryOptions(selected=""){const sel=document.getElementById("otherDutyName");if(!sel)return;const base=getDefaultVisibleCategories();const ordered=getCategoryOrder().filter(x=>base.includes(x)||getCustomCategories().includes(x));const options=["<option value=\"\">選ぶ</option>",...ordered.map(x=>`<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`),"<option value=\"__custom__\">＋ 自分で項目を追加</option>"];sel.innerHTML=options.join("");sel.value=selected||"";syncOtherDutyName()}
+function addCustomCategory(){const name=prompt("追加する項目名を入力してください");if(!name)return;const value=name.trim();if(!value||defaultCategories.includes(value))return;const list=getCustomCategories();if(!list.includes(value)){list.push(value);setCustomCategories(list);setCategoryOrder([...getCategoryOrder(),value]);}renderCategoryOptions(value);renderCategoryManager();showToast("項目を追加しました！")}
 function addCustomCategoryFromSettings(){addCustomCategory()}
 function deleteCustomCategory(name){if(!confirm(`「${name}」をカテゴリー一覧から削除しますか？\n過去の記録は削除されません。`))return;setCustomCategories(getCustomCategories().filter(x=>x!==name));setCategoryOrder(getCategoryOrder().filter(x=>x!==name));renderCategoryOptions();renderCategoryManager();showToast("カテゴリーを削除しました")}
 function moveCategory(index,delta){const order=getCategoryOrder(),next=index+delta;if(next<0||next>=order.length)return;[order[index],order[next]]=[order[next],order[index]];setCategoryOrder(order);renderCategoryManager();renderCategoryOptions()}
 function renderCategoryManager(){const el=document.getElementById("categoryManager");if(!el)return;const custom=new Set(getCustomCategories());const order=getCategoryOrder();el.innerHTML=order.length?order.map((name,i)=>`<div class="category-row"><span class="category-name">${escapeHtml(name)}${custom.has(name)?" <small>自分で追加</small>":""}</span><div class="category-actions"><button class="move-btn" onclick="moveCategory(${i},-1)" ${i===0?"disabled":""}>↑</button><button class="move-btn" onclick="moveCategory(${i},1)" ${i===order.length-1?"disabled":""}>↓</button>${custom.has(name)?`<button class="delete-btn" onclick="deleteCustomCategory('${escapeHtml(name).replace(/'/g,"&#39;")}')">🗑</button>`:""}</div></div>`).join(""):"<div class=\"empty\">カテゴリーはありません。</div>"}
-function syncOtherDutyName(){const v=document.getElementById("otherDutyName").value;document.getElementById("otherDutyCustomWrap").style.display=v==="その他"?"block":"none"}
-function attachJinmyoTimeButtons(){
-  document.querySelectorAll("[data-jinmyo-min]").forEach(btn=>{
-    btn.addEventListener("click", function(e){
-      e.preventDefault();
-      const minutes=Number(this.dataset.jinmyoMin)||0;
-      addJinmyoMinutes(minutes);
-    }, {passive:false});
-  });
-}
-
+function syncOtherDutyName(){const sel=document.getElementById("otherDutyName");if(!sel)return;const v=sel.value;if(v==="__custom__"){addCustomCategory();return;}}
 function attachActivityEvents(){
   const os=document.getElementById("osazuke"); if(os)os.addEventListener("input",syncPeople);
-  const js=document.getElementById("jinmyoStart"),je=document.getElementById("jinmyoEnd"); if(js)js.addEventListener("change",calcDuration);if(je)je.addEventListener("change",calcDuration);
-  document.getElementById("otherDutyName").addEventListener("change",syncOtherDutyName);document.getElementById("otherDutyStart").addEventListener("change",calcOtherDutyDuration);document.getElementById("otherDutyEnd").addEventListener("change",calcOtherDutyDuration);
+  const js=document.getElementById("jinmyoStart");
+  if(js)js.addEventListener("change",()=>{jinmyoMinutes=0;renderJinmyoDuration()});
+  document.querySelectorAll(".jinmyo-time-btn-v12").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      jinmyoMinutes += Number(btn.dataset.minutes)||0;
+      renderJinmyoDuration();
+    });
+  });
+  const reset=document.getElementById("jinmyoTimeReset");
+  if(reset)reset.addEventListener("click",()=>{jinmyoMinutes=0;renderJinmyoDuration()});
+  document.getElementById("otherDutyName").addEventListener("change",()=>{syncOtherDutyName();});
+  const ods=document.getElementById("otherDutyStart");
+  if(ods)ods.addEventListener("change",()=>{otherDutyMinutes=0;calcOtherDutyDuration()});
+  document.querySelectorAll(".other-duty-time-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      otherDutyMinutes += Number(btn.dataset.minutes)||0;
+      calcOtherDutyDuration();
+    });
+  });
+  const odReset=document.getElementById("otherDutyTimeReset");
+  if(odReset)odReset.addEventListener("click",()=>{otherDutyMinutes=0;calcOtherDutyDuration()});
 }
 function load(){
   const day=JSON.parse(localStorage.getItem(dayKey())||"{}"); const totals=JSON.parse(localStorage.getItem(totalsKey())||"{}");
   renderCategoryOptions(day.otherDutyName||"");
   orderedItems().forEach(([id,,unit])=>{const el=document.getElementById(id),tot=document.getElementById(id+"Total");if(el)el.value=day[id]??0;if(tot)tot.textContent=totals[id]??0;});
-  ["jinmyoStart","jinmyoEnd","jinmyoPlace","leafletPlace","visitPlace"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=day[id]||""});
-  document.getElementById("otherDutyName").value=day.otherDutyName||"";document.getElementById("otherDutyCustom").value=day.otherDutyCustom||"";document.getElementById("otherDutyPlace").value=day.otherDutyPlace||"";document.getElementById("otherDutyStart").value=day.otherDutyStart||"";document.getElementById("otherDutyEnd").value=day.otherDutyEnd||"";
-  document.getElementById("diary").value=day.diary||"";
-  renderGeneralEntries(Array.isArray(day.generalEntries)?day.generalEntries:[]);
-  syncOtherDutyName();calcOtherDutyDuration();calcDuration();syncPeople();
+  ["jinmyoStart","jinmyoPlace","leafletPlace","visitPlace"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=day[id]||""});
+  jinmyoMinutes=Number(day.jinmyoDurationMinutes)||0;
+  document.getElementById("otherDutyName").value=day.otherDutyName||"";document.getElementById("otherDutyPlace").value=day.otherDutyPlace||"";document.getElementById("otherDutyStart").value=day.otherDutyStart||"";otherDutyMinutes=Number(day.otherDutyDurationMinutes)||0;
+  document.getElementById("diary").value=day.diary||"";syncOtherDutyName();calcOtherDutyDuration();calcDuration();syncPeople();
   const names=Array.isArray(day.people)?day.people:[];[...document.querySelectorAll("#people input")].forEach((el,i)=>el.value=names[i]||"");
   document.getElementById("saved").textContent=day.saved?"保存済みです":"";
 }
 function save(){
   const old=JSON.parse(localStorage.getItem(dayKey())||"{}"),totals=JSON.parse(localStorage.getItem(totalsKey())||"{}"),day={saved:true};
   items.forEach(([id])=>{const el=document.getElementById(id);const n=el?Math.max(0,Math.floor(Number(el.value)||0)):Math.max(0,Number(old[id])||0);totals[id]=(Number(totals[id])||0)-(Number(old[id])||0)+n;day[id]=n;});
-  ["jinmyoStart","jinmyoEnd","jinmyoPlace","leafletPlace","visitPlace"].forEach(id=>{const el=document.getElementById(id);if(el)day[id]=el.value.trim?el.value.trim():el.value});
-  day.generalEntries=getGeneralEntriesFromUI();
-  day.jinmyoDurationMinutes=calcDuration();day.otherDutyName=document.getElementById("otherDutyName").value;day.otherDutyCustom=document.getElementById("otherDutyCustom").value.trim();day.otherDutyPlace=document.getElementById("otherDutyPlace").value.trim();day.otherDutyStart=document.getElementById("otherDutyStart").value;day.otherDutyEnd=document.getElementById("otherDutyEnd").value;day.otherDutyDurationMinutes=calcOtherDutyDuration();day.people=[...document.querySelectorAll("#people input")].map(x=>x.value.trim()).filter(Boolean);day.diary=document.getElementById("diary").value.trim();
+  ["jinmyoStart","jinmyoPlace","leafletPlace","visitPlace"].forEach(id=>{const el=document.getElementById(id);if(el)day[id]=el.value.trim?el.value.trim():el.value});
+  day.jinmyoDurationMinutes=calcDuration();day.otherDutyName=document.getElementById("otherDutyName").value;day.otherDutyCustom="";day.otherDutyPlace=document.getElementById("otherDutyPlace").value.trim();day.otherDutyStart=document.getElementById("otherDutyStart").value;day.otherDutyDurationMinutes=calcOtherDutyDuration();day.people=[...document.querySelectorAll("#people input")].map(x=>x.value.trim()).filter(Boolean);day.diary=document.getElementById("diary").value.trim();
   localStorage.setItem(dayKey(),JSON.stringify(day));localStorage.setItem(totalsKey(),JSON.stringify(totals));orderedItems().forEach(([id,,unit])=>{const t=document.getElementById(id+"Total");if(t)t.textContent=totals[id]||0;});
   const saved=document.getElementById("saved"),btn=document.getElementById("saveBtn");saved.textContent=`✅ ${date.value} の記録を保存しました！`;btn.textContent="✅ 保存しました";showToast("保存しました！");setTimeout(()=>{btn.textContent="今日の記録を保存"},2200);
 }
@@ -731,15 +631,8 @@ function renderBook(){
 function renderBookPage(){
   const page=document.getElementById("bookPage"),day=readDay(bookDate);let html=`<div class="book-page card"><div class="page-date">${bookDate||"記録なし"}</div>`;
   if(!day.saved){html+=`<div class="empty-page">この日の記録はありません。</div>`}else{
-    html+=`<div class="page-heading">🌱 今日の歩み</div>`;
-    if(getAppStyle()==="general"){
-      const entries=Array.isArray(day.generalEntries)?day.generalEntries:[];
-      if(entries.length){html+=`<div class="general-book-entries">`;entries.forEach(e=>{html+=`<div class="record-extra"><b>📌 ${escapeHtml(e.title||"記録")}</b>${e.text?`<div style="margin-top:5px">${escapeHtml(e.text).replace(/\n/g,"<br>")}</div>`:""}</div>`});html+=`</div>`;}
-      else html+=`<div class="empty-page" style="padding:25px 10px">この日の記録はありません。</div>`;
-    }else{
-      html+=`<div class="record-grid">`;
-      orderedItems().forEach(([id,name,unit])=>{if(!getVisibility()[id])return;html+=`<div><span>${name}</span><b>${day[id]??0}${unit}</b></div>`});
-    }
+    html+=`<div class="page-heading">🌱 今日の歩み</div><div class="record-grid">`;
+    orderedItems().forEach(([id,name,unit])=>{if(!getVisibility()[id])return;html+=`<div><span>${name}</span><b>${day[id]??0}${unit}</b></div>`});
     if(day.otherDutyName){const n=day.otherDutyName==="その他"?(day.otherDutyCustom||"その他の御用"):day.otherDutyName;html+=`</div><div class="record-extra"><b>📌 ${n}</b><br>${day.otherDutyPlace?"📍 "+escapeHtml(day.otherDutyPlace)+"<br>":""}${day.otherDutyStart?"🕐 "+day.otherDutyStart+" ～ "+day.otherDutyEnd+"<br>":""}${day.otherDutyDurationMinutes?"⏱ "+formatMinutes(day.otherDutyDurationMinutes):""}`;}
     else html+=`</div>`;
     if(day.diary)html+=`<div class="page-diary"><div class="diary-title">📝 今日の日誌</div><div>${escapeHtml(day.diary).replace(/\n/g,"<br>")}</div></div>`;
@@ -749,11 +642,7 @@ function renderBookPage(){
 function renderMonthSummary(month){
   const dates=storedDates().filter(x=>x.startsWith(month));let totalDays=0,agg={};dates.forEach(dt=>{const d=readDay(dt);if(!d.saved)return;totalDays++;orderedItems().forEach(([id,,unit])=>{agg[id]=(agg[id]||0)+(Number(d[id])||0)});});
   let h=`<button type="button" class="month-summary-btn">${month||""}月の歩み</button><div class="summary-days">今月は <strong>${totalDays}日</strong> の記録があります。</div>`;
-  if(!totalDays){h+=`<div class="empty">まだ記録がありません。</div>`}
-  else if(getAppStyle()==="general"){
-    let entryCount=0;dates.forEach(dt=>{const d=readDay(dt);if(d.saved)entryCount+=(Array.isArray(d.generalEntries)?d.generalEntries:[]).length;});
-    h+=`<div class="summary-grid"><div><span>記録した日</span><b>${totalDays}日</b></div><div><span>記録した項目</span><b>${entryCount}件</b></div></div>`;
-  }else{h+=`<div class="summary-grid">`;orderedItems().forEach(([id,name,unit])=>{if(getVisibility()[id])h+=`<div><span>${name}</span><b>${agg[id]||0}${unit}</b></div>`});h+=`</div>`}document.getElementById("monthSummary").innerHTML=h;
+  if(!totalDays){h+=`<div class="empty">まだ記録がありません。</div>`}else{h+=`<div class="summary-grid">`;orderedItems().forEach(([id,name,unit])=>{if(getVisibility()[id])h+=`<div><span>${name}</span><b>${agg[id]||0}${unit}</b></div>`});h+=`</div>`}document.getElementById("monthSummary").innerHTML=h;
 }
 function renderDiaryList(month){const dates=storedDates().filter(x=>x.startsWith(month)).reverse(),el=document.getElementById("diaryList");const arr=dates.map(dt=>({dt,d:readDay(dt)})).filter(x=>x.d.diary);el.innerHTML=arr.length?arr.map(x=>`<button class="diary-link" onclick="openDiaryDate('${x.dt}')">${x.dt}　${escapeHtml(x.d.diary).slice(0,60)}${x.d.diary.length>60?"…":""}</button>`).join(""):`<div class="empty">この月には日誌の記録がありません。</div>`}
 function openDiaryDate(dt){bookDate=dt;renderBookPage()}
@@ -783,13 +672,8 @@ function getOrder(){
 function orderedItems(){const map=Object.fromEntries(items.map(x=>[x[0],x]));return getOrder().map(id=>map[id]).filter(Boolean)}
 function openSettings(){
   const v=getVisibility(), order=getOrder(), wrap=document.getElementById("settingsItems");
-  const style=getAppStyle();
-  // 一般の方向けでは、お道専用の記録項目を設定画面にも表示しない
-  const generalHidden = ["jinmyo","leaflet","visit","otsutome","junin","osazuke"];
-  const visibleOrder = style==="general" ? order.filter(id=>!generalHidden.includes(id)) : order;
-  wrap.innerHTML=visibleOrder.map((id,i)=>{const item=items.find(x=>x[0]===id);return `<div class="setting-row"><label class="check-row"><input type="checkbox" data-setting="${id}" ${v[id]?"checked":""}><span class="setting-name">${item[1]}</span></label><button class="move-btn" onclick="moveSetting(${order.indexOf(id)},-1)" ${order.indexOf(id)===0?"disabled":""}>↑</button><button class="move-btn" onclick="moveSetting(${order.indexOf(id)},1)" ${order.indexOf(id)===order.length-1?"disabled":""}>↓</button></div>`}).join("");
+  wrap.innerHTML=order.map((id,i)=>{const item=items.find(x=>x[0]===id);return `<div class="setting-row"><label class="check-row"><input type="checkbox" data-setting="${id}" ${v[id]?"checked":""}><span class="setting-name">${item[1]}</span></label><button class="move-btn" onclick="moveSetting(${i},-1)" ${i===0?"disabled":""}>↑</button><button class="move-btn" onclick="moveSetting(${i},1)" ${i===order.length-1?"disabled":""}>↓</button></div>`}).join("");
   renderCategoryManager();
-  const categoryArea=document.querySelector(".category-area"); if(categoryArea)categoryArea.style.display=style==="general"?"none":"block";
   document.getElementById("settingsModal").style.display="flex";
 }
 function moveSetting(index,delta){
@@ -804,12 +688,11 @@ function importData(ev){const f=ev.target.files[0];if(!f)return;const r=new File
 
 applyAppStyle();
 renderItems();
-attachJinmyoTimeButtons();
 </script>
 
 <style>
 .style-switch-card{margin:12px 0 14px;padding:13px;border:1px solid #d2edf8;border-radius:16px;background:#fafdff}.style-switch-title{font-weight:800;color:#155c88;margin-bottom:3px}.style-switch-desc{font-size:12px;color:#66879a;line-height:1.6;margin-bottom:9px}.style-switch-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.style-choice{margin:0!important;padding:11px 8px!important;border-radius:13px!important;background:#fff!important;color:#176d9e!important;border:1px solid #c7e7f5!important;box-shadow:none!important;font-size:14px!important;line-height:1.45}.style-choice span{font-size:10px;font-weight:600;color:#66879a}.style-choice.active{background:#eaf8ff!important;border:2px solid #3aa7d7!important;padding:10px 7px!important}.hero.general-mode{background:linear-gradient(180deg,#dff6ff 0%,#bfe7d0 52%,#93c78e 100%)!important}.hero.general-mode .hero-text{color:#275d4a!important;text-shadow:0 1px 2px rgba(255,255,255,.8)!important}.hero.general-mode .hero-sub{color:#3d7b61!important}@media(max-width:430px){.style-switch-grid{grid-template-columns:1fr}.style-choice{font-size:13px!important}}
-.top-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px}.nav-btn{margin-top:0!important}.nav-btn.secondary,.secondary-btn{background:#edf8fd!important;color:#176d9e!important;border:1px solid #c7e7f5!important;box-shadow:none!important}.diary-card textarea{width:100%;min-height:180px;resize:vertical;padding:14px;border:1px solid #c7e6f3;border-radius:14px;background:#fbfeff;color:#244d68;font-size:16px;line-height:1.8;font-family:inherit;box-sizing:border-box;outline:none}.diary-card textarea:focus{border-color:#72b9d8;box-shadow:0 0 0 3px rgba(20,143,208,.12)}.settings-card{margin-top:18px}.small-btn{margin-top:0!important;font-size:15px!important;padding:12px!important}.settings-help{margin:6px 0 12px}.modal{position:fixed;inset:0;background:rgba(25,83,108,.28);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding:12px}.modal-inner{width:min(620px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:22px;padding:20px;box-shadow:0 15px 45px rgba(20,80,110,.25)}.modal-title{font-size:19px;font-weight:800;color:#155c88;margin-bottom:5px}.modal-desc{font-size:13px;color:#66879a;line-height:1.7;margin-bottom:12px}.setting-row{display:flex;align-items:center;gap:8px;padding:10px 6px;border-bottom:1px solid #e6f2f7}.setting-row:last-child{border-bottom:0}.setting-name{flex:1;font-weight:700;color:#315f76}.move-btn{width:42px!important;margin:0!important;padding:8px!important;font-size:15px!important;border-radius:10px!important;background:#edf8fd!important;color:#176d9e!important;box-shadow:none!important;border:1px solid #c7e7f5!important}.check-row{display:flex;align-items:center;gap:9px;margin:0!important}.check-row input{width:20px;height:20px}.category-area{margin-top:18px;padding-top:14px;border-top:1px solid #d9edf5}.category-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 4px;border-bottom:1px solid #e6f2f7}.category-name{flex:1;font-weight:700;color:#315f76}.category-name small{font-size:10px;color:#7aa0b3;font-weight:600}.category-actions{display:flex;gap:5px}.delete-btn{width:42px!important;margin:0!important;padding:8px!important;font-size:14px!important;border-radius:10px!important;background:#fff2f2!important;color:#b94a4a!important;box-shadow:none!important;border:1px solid #f0cccc!important}
+.top-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px}.nav-btn{margin-top:0!important}.nav-btn.secondary{background:linear-gradient(135deg,#f6c84a,#f39b38)!important;color:#fff!important;border:0!important;box-shadow:0 5px 14px rgba(243,155,56,.24)!important}.secondary-btn{background:#edf8fd!important;color:#176d9e!important;border:1px solid #c7e7f5!important;box-shadow:none!important}.diary-card textarea{width:100%;min-height:180px;resize:vertical;padding:14px;border:1px solid #c7e6f3;border-radius:14px;background:#fbfeff;color:#244d68;font-size:16px;line-height:1.8;font-family:inherit;box-sizing:border-box;outline:none}.diary-card textarea:focus{border-color:#72b9d8;box-shadow:0 0 0 3px rgba(20,143,208,.12)}.settings-card{margin-top:18px}.small-btn{margin-top:0!important;font-size:15px!important;padding:12px!important}.settings-help{margin:6px 0 12px}.modal{position:fixed;inset:0;background:rgba(25,83,108,.28);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding:12px}.modal-inner{width:min(620px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:22px;padding:20px;box-shadow:0 15px 45px rgba(20,80,110,.25)}.modal-title{font-size:19px;font-weight:800;color:#155c88;margin-bottom:5px}.modal-desc{font-size:13px;color:#66879a;line-height:1.7;margin-bottom:12px}.setting-row{display:flex;align-items:center;gap:8px;padding:10px 6px;border-bottom:1px solid #e6f2f7}.setting-row:last-child{border-bottom:0}.setting-name{flex:1;font-weight:700;color:#315f76}.move-btn{width:42px!important;margin:0!important;padding:8px!important;font-size:15px!important;border-radius:10px!important;background:#edf8fd!important;color:#176d9e!important;box-shadow:none!important;border:1px solid #c7e7f5!important}.check-row{display:flex;align-items:center;gap:9px;margin:0!important}.check-row input{width:20px;height:20px}.category-area{margin-top:18px;padding-top:14px;border-top:1px solid #d9edf5}.category-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 4px;border-bottom:1px solid #e6f2f7}.category-name{flex:1;font-weight:700;color:#315f76}.category-name small{font-size:10px;color:#7aa0b3;font-weight:600}.category-actions{display:flex;gap:5px}.delete-btn{width:42px!important;margin:0!important;padding:8px!important;font-size:14px!important;border-radius:10px!important;background:#fff2f2!important;color:#b94a4a!important;box-shadow:none!important;border:1px solid #f0cccc!important}
 .backup-area{margin-top:16px;padding-top:14px;border-top:1px solid #d9edf5}.backup-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.settings-close{margin-top:10px!important;background:#fff!important;color:#176d9e!important;border:1px solid #c7e7f5!important;box-shadow:none!important}.back-button{margin-bottom:10px!important;background:#edf8fd!important;color:#176d9e!important;border:1px solid #c7e7f5!important;box-shadow:none!important}.book-cover .book-title{font-size:23px;font-weight:800;color:#155c88;text-align:center}.book-cover .book-sub{text-align:center;color:#66879a;margin:5px 0 10px}.book-cover button{margin-top:6px}.book-page{background:linear-gradient(135deg,#fff,#f9fdff)!important;min-height:330px}.page-date{font-size:13px;color:#66879a;text-align:right}.page-heading{font-size:21px;font-weight:800;color:#176d9e;margin:12px 0}.record-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.record-grid>div,.summary-grid>div{display:flex;justify-content:space-between;gap:8px;padding:9px 10px;background:#f4fbff;border-radius:10px}.record-grid b,.summary-grid b{color:#155c88}.record-extra,.page-diary{margin-top:14px;padding:12px;border-radius:12px;background:#f7fbfd;line-height:1.7}.diary-title{font-weight:800;color:#176d9e;margin-bottom:5px}.summary-lead{font-weight:800;color:#176d9e;margin-bottom:5px}.summary-days{color:#557584;margin-bottom:10px}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.diary-link{background:#f4fbff!important;color:#315f76!important;border:1px solid #d3edf7!important;box-shadow:none!important;text-align:left!important;font-size:14px!important;margin-top:7px!important}.empty-page{text-align:center;padding:70px 10px;color:#89979d}
 .month-picker-button{
   position:relative;
@@ -855,110 +738,6 @@ attachJinmyoTimeButtons();
 
 .book-nav{display:grid;grid-template-columns:1fr 1fr;gap:9px}.book-nav button{margin-top:0!important}@media(max-width:430px){.top-nav{grid-template-columns:1fr}.backup-grid,.record-grid,.summary-grid{grid-template-columns:1fr}}
 </style>
-
-
-<script>
-/* ===== 神名流し：開始時間＋加算ボタン（iPhone対応版） ===== */
-(function(){
-  function formatJinmyoMinutes(total){
-    total=Math.max(0,Math.floor(Number(total)||0));
-    if(total<60) return total+'分';
-    var h=Math.floor(total/60), m=total%60;
-    return h+'時間'+(m ? m+'分' : '');
-  }
-
-  function resetJinmyoTimer(){
-    var start=document.getElementById('jinmyoStart');
-    var end=document.getElementById('jinmyoEnd');
-    var result=document.getElementById('jinmyoTimeResult');
-    var duration=document.getElementById('jinmyoDuration');
-    var card=start ? start.closest('.activity-card') : null;
-    if(card) card.dataset.jinmyoMinutes='0';
-    if(end) end.value='';
-    if(result) result.textContent='開始時間を入れて、かかった時間を選べます';
-    if(duration) duration.textContent='活動時間：未入力';
-  }
-
-  function addJinmyoTime(e){
-    e.preventDefault();
-    e.stopPropagation();
-
-    var btn=e.currentTarget;
-    var start=document.getElementById('jinmyoStart');
-    var end=document.getElementById('jinmyoEnd');
-    var result=document.getElementById('jinmyoTimeResult');
-    var duration=document.getElementById('jinmyoDuration');
-    var card=btn.closest('.activity-card');
-
-    if(!start || !start.value){
-      if(result) result.textContent='先に開始時間を入力してください';
-      if(start) start.focus();
-      return;
-    }
-
-    var parts=start.value.split(':');
-    var h=Number(parts[0]), m=Number(parts[1]);
-    if(!Number.isFinite(h) || !Number.isFinite(m)) return;
-
-    var current=card ? Number(card.dataset.jinmyoMinutes||0) : 0;
-    var add=Number(btn.dataset.minutes||0);
-    var total=Math.min(current+add,1439);
-
-    if(card) card.dataset.jinmyoMinutes=String(total);
-
-    /* 終了時刻は内部保存用。画面には表示しない */
-    var d=new Date(2000,0,1,h,m);
-    d.setMinutes(d.getMinutes()+total);
-    var endValue=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    if(end) end.value=endValue;
-
-    if(result) result.textContent='＋'+formatJinmyoMinutes(total);
-    if(duration) duration.textContent='活動時間：'+formatJinmyoMinutes(total);
-  }
-
-  function resetJinmyoTime(){
-    var start=document.getElementById('jinmyoStart');
-    var end=document.getElementById('jinmyoEnd');
-    var result=document.getElementById('jinmyoTimeResult');
-    var duration=document.getElementById('jinmyoDuration');
-    var card=start ? start.closest('.activity-card') : null;
-    if(card) card.dataset.jinmyoMinutes='0';
-    if(end) end.value='';
-    if(result) result.textContent='開始時間を入れて、かかった時間を選べます';
-    if(duration) duration.textContent='活動時間：未入力';
-  }
-
-  function attach(){
-    var start=document.getElementById('jinmyoStart');
-    if(start && !start.dataset.jinmyoBound){
-      start.dataset.jinmyoBound='1';
-      start.addEventListener('change',resetJinmyoTimer,false);
-      start.addEventListener('input',resetJinmyoTimer,false);
-    }
-
-    var reset=document.getElementById('jinmyoResetBtn');
-    if(reset && !reset.dataset.jinmyoBound){
-      reset.dataset.jinmyoBound='1';
-      reset.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();resetJinmyoTime();},false);
-    }
-
-    document.querySelectorAll('.jinmyo-time-btn-v12').forEach(function(btn){
-      if(btn.dataset.jinmyoBound) return;
-      btn.dataset.jinmyoBound='1';
-      btn.addEventListener('click',addJinmyoTime,false);
-      btn.addEventListener('pointerup',function(e){
-        /* clickが発火しない環境だけを補助 */
-        if(e.pointerType==='touch') addJinmyoTime(e);
-      },false);
-    });
-  }
-
-  /* renderItems() の後でも確実に拾えるように監視 */
-  attach();
-  var observer=new MutationObserver(attach);
-  observer.observe(document.body,{childList:true,subtree:true});
-})();
-</script>
 </body>
 </html>
 </html>
