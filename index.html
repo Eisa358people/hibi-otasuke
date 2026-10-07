@@ -1738,7 +1738,7 @@ function save(){
   }
   localStorage.setItem(dayKey(),JSON.stringify(day));
   localStorage.setItem(totalsKey(),JSON.stringify(totals));
-  orderedItems().forEach(([id,,unit])=>{const t=document.getElementById(id+"Total");if(t)t.textContent=totals[id]||0});
+ orderedItems().forEach(([id,,unit])=>{const t=document.getElementById(id+"Total");if(t)t.textContent=day[id]||0});
   // 保存後は入力した数字を空欄に戻し、「今日○回」だけを残す。
   // 修正したいときは「今日○回」をタップすると保存済みの数を入力欄へ戻せます。
   clearNumericInputsAfterSave();
