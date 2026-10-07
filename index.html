@@ -1650,7 +1650,7 @@ function load(){
   const totals=JSON.parse(localStorage.getItem(totalsKey())||"{}");
   orderedItems().forEach(([id,,unit])=>{
     const el=document.getElementById(id),tot=document.getElementById(id+"Total");
-    if(el)el.value="";if(tot)tot.textContent=totals[id]??0;
+ if(el)el.value="";if(tot)tot.textContent=day[id]??0;
   });
   ["jinmyoStart","jinmyoPlace","leafletPlace","visitPlace"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=day[id]||""});
   jinmyoMinutes=Number(day.jinmyoDurationMinutes)||0;
