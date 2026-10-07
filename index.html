@@ -1637,7 +1637,7 @@ function resetTodayCount(id){
   localStorage.setItem(totalsKey(),JSON.stringify(totals));
   const input=document.getElementById(id), total=document.getElementById(id+"Total");
   if(input)input.value="";
-  if(total)total.textContent=totals[id]||0;
+  if(total)total.textContent=day[id]||0;
   showToast("今日の記録を0にリセットしました");
 }
 
