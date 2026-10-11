@@ -3780,7 +3780,7 @@ function load(){
   jinmyoMinutes=Number(day.jinmyoDurationMinutes)||0;
 
   otherDutyDraftOnly=false;
-  if(Array.isArray(day.otherDuties)){
+ }else if(Array.isArray(day.otherDutyEntries) && day.otherDutyEntries.length > 0){
     otherDutyEntries=day.otherDuties.map(normaliseOtherDuty);
   }else if(Array.isArray(day.otherDutyEntries)){
     otherDutyEntries=day.otherDutyEntries.map(normaliseOtherDuty);
@@ -4037,7 +4037,7 @@ function renderBookPage(){
   }
 
   const duties=(Array.isArray(day.otherDuties)?day.otherDuties:(day.otherDutyName?[{name:day.otherDutyName,custom:day.otherDutyCustom||"",place:day.otherDutyPlace||"",start:day.otherDutyStart||"",durationMinutes:Number(day.otherDutyDurationMinutes)||0}]:[])).map(d=>normaliseOtherDuty(d));
-  if(Array.isArray(day.otherDuties)){
+ }else if(Array.isArray(day.otherDutyEntries) && day.otherDutyEntries.length > 0){
     const repaired=day.otherDuties.map(d=>normaliseOtherDuty(d));
     if(JSON.stringify(repaired)!==JSON.stringify(day.otherDuties)){
       day.otherDuties=repaired;
